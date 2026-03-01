@@ -1,53 +1,28 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def home():
     return render_template("index.html")
 
-@app.route("/generate-multi-content", methods=["POST"])
-def generate_multi_content():
-    data = request.json
-    content_type = data.get("type", "linkedin")
-    tone = data.get("tone", "professional")
-    audience = data.get("audience", "")
-    length = data.get("length", "medium")
-    keywords = data.get("keywords", "")
+@app.route('/generate', methods=['POST'])
+def generate():
+    tone = request.form['tone']
+    audience = request.form['audience']
+    length = request.form['length']
+    keywords = request.form['keywords']
+    content_type = request.form['content_type']
 
-    # Build dynamic prompt
-    prompt = f"Write a {length} {content_type} in {tone} tone for {audience}."
-    if keywords:
-        prompt += f" Include keywords: {keywords}."
+    # Temporary Demo Output (Replace with LLM later)
+    generated_content = f"""
+    Generated {content_type} for {audience}
+    Tone: {tone}
+    Length: {length}
+    Keywords: {keywords}
+    """
 
-    # Call AI engine (placeholder)
-    content = call_ai_engine(prompt)
+    return render_template("index.html", generated_content=generated_content)
 
-    # Content-type-specific formatting
-    if content_type == "linkedin":
-        content = process_linkedin(content)
-    elif content_type == "email":
-        content = process_email(content)
-    elif content_type == "ad":
-        content = process_ad(content)
-
-    return jsonify({"content": content})
-
-def call_ai_engine(prompt):
-    # Replace with your OpenAI / AI engine call
-    return f"[Generated content based on prompt: {prompt}]"
-
-# LinkedIn post: add hashtags
-def process_linkedin(text):
-    return text + "\n\n#Innovation #AI #Tech"
-
-# Email: structured with subject and body
-def process_email(text):
-    return {"subject": "Your Subject Here", "body": text}
-
-# Ad copy: add CTA
-def process_ad(text):
-    return text + "\nCall us today!"
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)

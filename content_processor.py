@@ -24,4 +24,4 @@ def generate_content(data):
     elif content_type == 'ad':
         generated_text += "\nCall to Action: Buy Now!"
 
-    return generated_text
+    return generated_text 
