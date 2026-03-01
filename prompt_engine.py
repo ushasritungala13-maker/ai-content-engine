@@ -1,21 +1,23 @@
-def build_prompt(data):
+def build_prompt(content_type, tone, audience, length, keywords):
 
     prompt = f"""
-    Generate a {data['content_type']}.
+    Generate structured content in JSON format:
+    headline, two_lines, cta, body.
 
-    Tone: {data['tone']}
-    Target Audience: {data['audience']}
-    Length: {data['length']}
-    Include these keywords: {data['keywords']}
+    Content Type: {content_type}
+    Tone: {tone}
+    Target Audience: {audience}
+    Length: {length}
+    Keywords: {keywords}
     """
 
-    if data["content_type"] == "LinkedIn Post":
-        prompt += "\nAdd relevant hashtags at the end."
+    if content_type == "LinkedIn Post":
+        prompt += "\nInclude hashtags and make it engaging."
 
-    elif data["content_type"] == "Email":
-        prompt += "\nInclude subject line and proper professional structure."
+    elif content_type == "Email":
+        prompt += "\nUse formal tone and include greeting and closing."
 
-    elif data["content_type"] == "Ad Copy":
-        prompt += "\nInclude a strong Call-To-Action at the end."
+    elif content_type == "Advertisement":
+        prompt += "\nMake it persuasive with strong call-to-action."
 
     return prompt
