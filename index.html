@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Content Engine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>AI Content Generator</h1>
+    <form id="contentForm">
+        <label for="tone">Select Tone:</label>
+        <select id="tone" name="tone" title="Choose the tone of your content">
+            <option value="professional">Professional</option>
+            <option value="casual">Casual</option>
+            <option value="persuasive">Persuasive</option>
+            <option value="friendly">Friendly</option>
+        </select>
+        <br><br>
+
+        <label for="audience">Target Audience:</label>
+        <input type="text" id="audience" name="audience" placeholder="e.g., college students" title="Specify your target audience">
+        <br><br>
+
+        <label for="length">Content Length:</label>
+        <select id="length" name="length" title="Choose the approximate length of your content">
+            <option value="short">Short (50-100 words)</option>
+            <option value="medium">Medium (100-200 words)</option>
+            <option value="long">Long (200-500 words)</option>
+        </select>
+        <br><br>
+
+        <label for="keywords">Include Keywords:</label>
+        <input type="text" id="keywords" name="keywords" placeholder="Comma separated" title="Optional keywords to include">
+        <br><br>
+
+        <label for="contentType">Content Type:</label>
+        <select id="contentType" name="contentType" title="Select the type of content to generate">
+            <option value="linkedin">LinkedIn Post</option>
+            <option value="email">Professional Email</option>
+            <option value="ad">Ad Copy</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Generate Content</button>
+    </form>
+
+    <h2>Generated Content:</h2>
+    <pre id="output"></pre>
+
+    <script src="script.js"></script>
+</body>
+</html>
